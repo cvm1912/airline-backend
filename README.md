@@ -5,3 +5,16 @@ The http-status-codes package is a small and very useful Node.js library to mana
 
 The dotenv package is used in Node.js to load environment variables from a .env file into process.env.
 
+API versioning 
+node-watch
+npx nodemon src/index.js
+why api/v1/.... why api ?
+express router 
+
+
+
+
+
+
+
+
