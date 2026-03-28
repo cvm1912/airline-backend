@@ -1,10 +1,6 @@
 const express = require('express')
+const { info } = require('../../controllers/infoController')
 const router = express.Router()
-router.get('/info', (req,res)=>{
-    return res.json({
-        name:"shivam singh",
-        mail:"rajshivam1912@gmail.com"
-    })
-})
+router.get('/info', info)
 
 module.exports = router;
