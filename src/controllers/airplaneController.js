@@ -5,10 +5,10 @@ const {airplaneService} = require("../services");
  * req-body: {modelNumber:'airbus320', capacity:200}
  */
 
-function createAirplane(req,res){
+async function createAirplane(req,res){
     try{
         const {modelNumber, capacity } = req.body;    
-        const response = airplaneService.createAirplane({modelNumber, capacity});
+        const response = await airplaneService.createAirplane({modelNumber, capacity});
         res.status(201).json({
             success: true,
             message: "Airplane created successfully",
@@ -22,14 +22,13 @@ function createAirplane(req,res){
             error: err,
             data: {},
             success: false
-
         })
     }
 }
 
-function getAirplanes(req,res){
+async function getAirplanes(req,res){
     try{
-        const response = airplaneService.getAirplanes();
+        const response = await airplaneService.getAirplanes();
         res.status(200).json({
             success: true,
             message: "Airplanes fetched successfully",
@@ -43,7 +42,6 @@ function getAirplanes(req,res){
             error: err,
             data: {},
             success: false
-
         })
     }
 }
