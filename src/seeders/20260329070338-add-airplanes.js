@@ -1,0 +1,31 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    /**
+     * Add seed commands here.
+     *
+     * Example:
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+    */
+    await queryInterface.bulkInsert('Airplanes', [
+      { modelNumber: 'airbus320', capacity: 100, createdAt: new Date(), updatedAt: new Date() },
+      { modelNumber: 'boeing737', capacity: 90, createdAt: new Date(), updatedAt: new Date() },
+      { modelNumber: 'boeing747', capacity: 100, createdAt: new Date(), updatedAt: new Date() }
+    ]);
+  },
+
+  async down (queryInterface, Sequelize) {
+    /**
+     * Add commands to revert seed here.
+     *
+     * Example:
+     * await queryInterface.bulkDelete('People', null, {});
+     */
+     await queryInterface.bulkDelete('Airplanes', {});
+  }
+};

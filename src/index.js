@@ -1,8 +1,6 @@
 const express = require('express');
 const { ServerConfig, logger } = require('./config/index')
 const apiRoutes = require('./routes/index')
-
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

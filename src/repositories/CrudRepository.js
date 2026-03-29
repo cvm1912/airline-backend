@@ -1,86 +1,51 @@
-const Logger = require("../config/logger");
+const Logger = require("../config/logger")
+const { StatusCodes } = require("http-status-codes")
+const AppError = require("../utils/error/error")
+
 class CrudRepository{
     constructor(model){
-        this.model=model;
+        this.model = model;
     }
-
 
     async create(data){
-        try{
-            const response = await this.model.create(data);
-            Logger.info("Data is successfully created in database");
-            return response;
-
-        }catch(err)
-        {
-            Logger.error("Something went wrong in crud repository");
-            throw err;
-        }
+        const response = await this.model.create(data);
+        return response;
     }
 
-      async delete(data){
-        try{
-            const response = await this.model.delete({
-                where: {
-                    id:data.id
-
-                }
-            });
-            Logger.info("Data is successfully deleted from database");
-            return response;
-
-        }catch(err)
-        {
-            Logger.error("Something went wrong in crud repository");
-            throw err;
-        }
+    async delete(data){
+        const response = await this.model.destroy({
+            where: {
+                id: data.id
+            }
+        });
+        return response;
     }
 
-      async get(data){
-        try{
-            const response = await this.model.findByPk(data)
-            Logger.info("Data is successfully got from database");
-            return response;
-
-        }catch(err)
-        {
-            Logger.error("Something went wrong in crud repository");
-            throw err;
+    async get(data){
+        const response = await this.model.findByPk(data);
+        if(!response){
+            Logger.error("No record found for the given id");
+            throw new AppError("No record found for the given id", StatusCodes.NOT_FOUND);
         }
+        Logger.info("Data is successfully got from database");
+        return response;
     }
 
-      async getAll(data){
-        try{
-            const response = await this.model.findAll(data)
-            Logger.info("Data is successfully got from database");
-            return response;
-
-        }catch(err)
-        {
-            Logger.error("Something went wrong in crud repository");
-            throw err;
-        }
+    async getAll(data){
+        const response = await this.model.findAll(data);
+        Logger.info("Data is successfully got from database");
+        return response;
     }
 
-     async update(id, data){
-        try{
-            const response = await this.model.update(data, {
-                where: {
-                    id: id
-                }
-            });
-            Logger.info("Data is successfully updated in database");
-            return response;
-
-        }catch(err)
-        {
-            Logger.error("Something went wrong in crud repository");
-            throw err;
-        }
+    async update(id, data){
+        const response = await this.model.update(data, {
+            where: {
+                id: id
+            }
+        });
+        Logger.info("Data is successfully updated in database");
+        return response;
     }
-
-
 }
 
 module.exports = CrudRepository;
-

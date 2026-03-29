@@ -45,8 +45,34 @@ async function getAirplanes(req,res){
     }
 }
 
+/**
+ * GET: /airplanes/:id
+ * req-body: {}
+ */
+
+async function getAirplane(req,res){
+    try{
+        const id = req.params.id;
+        const response = await airplaneService.getAirplane(id);
+        SuccessResponse.message = "Airplane fetched successfully";
+        SuccessResponse.success = true;
+        SuccessResponse.error = {};
+        SuccessResponse.data = response;
+        res.status(200).json(SuccessResponse);
+
+    }catch(err){
+        ErrorResponse.message = "Something went wrong";
+        ErrorResponse.error = err;
+        ErrorResponse.data = {};
+        ErrorResponse.success = false;
+        res.status(500).json(ErrorResponse);
+    }
+}
+   
+
 module.exports = {
     createAirplane,
-    getAirplanes
+    getAirplanes,
+    getAirplane
 }
 
