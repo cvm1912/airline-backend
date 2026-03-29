@@ -20,7 +20,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     capacity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0,
+      validate: {
+        max: {
+          args: 100,
+          msg: "Capacity cannot exceed 100"
+        }
+      }
     }
     
   }, {
