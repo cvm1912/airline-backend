@@ -20,7 +20,7 @@ class CrudRepository{
 
       async delete(data){
         try{
-            const response = await this.model.delete({
+            const response = await this.model.destroy({
                 where: {
                     id:data.id
 
