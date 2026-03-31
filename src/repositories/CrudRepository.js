@@ -18,6 +18,10 @@ class CrudRepository{
                 id: data.id
             }
         });
+        if(!response){
+            throw new AppError("No record found for the given id", StatusCodes.NOT_FOUND);
+            Logger.error("No record found for the given id");
+        }
         return response;
     }
 

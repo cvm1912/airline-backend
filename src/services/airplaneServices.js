@@ -1,6 +1,7 @@
 const {airplaneRepository} = require("../repositories");
 const {StatusCodes} = require("http-status-codes");
 const AppError = require("../utils/error/error");
+const { logger } = require("../config");
 
 
 const AirplaneRepository = new airplaneRepository();
@@ -38,10 +39,25 @@ async function getAirplane(id){
         throw err;
     }
 }
+
+
+async function destroyAirplane(id){
+    try{
+        const response = await AirplaneRepository.delete({id});
+        logger.info("Airplane is successfully deleted");
+        return response;
+    }catch(err){
+        if(err.statusCode == StatusCodes.NOT_FOUND){
+            throw new AppError("No airplane found for the given id", StatusCodes.NOT_FOUND);
+        }
+        throw err;
+    }
+}
 module.exports={
     createAirplane,
     getAirplanes,
-    getAirplane
+    getAirplane, 
+    destroyAirplane
 }   
 
 
