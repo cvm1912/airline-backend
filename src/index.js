@@ -9,3 +9,4 @@ app.listen(ServerConfig.PORT, ()=>{
     console.log(`server is running on http://localhost:${ServerConfig.PORT}`)
     logger.info("successfully started the server")
 })
+ 
