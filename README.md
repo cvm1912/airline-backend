@@ -16,9 +16,13 @@ sequelize & driver
 sequelize cli - github repo
 development test production environment
 
+npm install sequelize-cli --save-dev
+
 npx sequelize db:create
 npx sequelize model:generate --name airplane --attribute modelNumber:string,capacity:integer
 npx sequelize db:migrate
+npx sequelize seed:generate --name add-airplanes
+npx  Sequelize db:seed:all
 
 
 
