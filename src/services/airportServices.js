@@ -10,7 +10,7 @@ async function createAirport(data) {
         const response = await airportRepository.create(data);
         return response;
     } catch(err) {
-        logger.error('cannot create a new airport object');
+        logger.error(err);
         if(err.name === 'TypeError') {
             throw new AppError('Cannot create a new airport object', StatusCodes.INTERNAL_SERVER_ERROR);
         } else if(err.name === 'SequelizeUniqueConstraintError') {
