@@ -1,7 +1,11 @@
 const { validateCreateRequest } = require('./airplane');
-const { validateCreateRequest: validateCityCreateRequest } = require('./city');
+const { validateCreateRequest: validateCityRequest } = require('./city');
+const { validateCreateRequest: validateAirportRequest } = require('./airportMiddleware');
 
 module.exports = {
     createRequest: validateCreateRequest,
-    cityCreateRequest: validateCityCreateRequest
+    cityCreateRequest: validateCityRequest,
+    updateCityRequest: validateCityRequest,
+    createAirportRequest: validateAirportRequest,
+    updateAirportRequest: validateAirportRequest
 }
